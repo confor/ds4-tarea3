@@ -7,14 +7,22 @@ services:
       - 80:80
     volumes:
       - ./nginx:/etc/nginx/conf.d/
-      - ./static:/var/www/html
+    depends_on:
+      - django
 
-  db:
+  mariadb:
     image: mariadb
     volumes:
       - ./mariadb:/var/lib/mysql
-    ports:
-      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=asdasdfasdfas
       - MYSQL_DATABASE=hola
+
+  django:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    depends_on:
+      - mariadb
