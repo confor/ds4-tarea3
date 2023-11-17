@@ -20,9 +20,9 @@ services:
 
   django:
     build:
-      context: ./app
+      context: ./django
       dockerfile: Dockerfile
     volumes:
-      - ./app:/app
+      - ./django:/app
     depends_on:
       - mariadb
