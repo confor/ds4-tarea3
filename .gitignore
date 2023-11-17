@@ -1,1 +1,4 @@
 mariadb/*
+django/venv/
+*.pyc
+__pycache__
